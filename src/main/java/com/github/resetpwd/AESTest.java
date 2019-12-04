@@ -65,7 +65,25 @@ public class AESTest {
     }
 
 
+    public static void main(String[] args)
+    {
+        logger.info("CloudResetPwdAgent start..........");
+        try
+        {
+            logger.info("log");
+            String str = "385152jsk";
+            String sec = encrypt(str);
+            System.out.println(sec);
+            System.out.println(sKey);
 
+            System.out.println(decrypt(sec));
+        }
+        catch (Exception e)
+        {
+            logger.error(e);
+        }
+        logger.info("CloudResetPwdAgent finish..........");
+    }
     @Test
     public  void test2() throws Exception {
         try {

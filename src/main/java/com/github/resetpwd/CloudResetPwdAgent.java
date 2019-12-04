@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class CloudResetPwdAgent {
     private static Logger logger = LogManager.getLogger(CloudResetPwdAgent.class);
 
-    public static void main(String[] args)
+   /* public static void main(String[] args)
     {
         logger.info("CloudResetPwdAgent start..........");
         ResetPwdFlow agent = new ResetPwdFlow();
@@ -23,5 +23,5 @@ public class CloudResetPwdAgent {
             logger.error(e);
         }
         logger.info("CloudResetPwdAgent finish..........");
-    }
+    }*/
 }
