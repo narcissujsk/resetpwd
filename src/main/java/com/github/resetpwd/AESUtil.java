@@ -1,16 +1,9 @@
 package com.github.resetpwd;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.apache.log4j.Logger;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Base64;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -18,27 +11,27 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class AESUtil {
     private static Logger logger = Logger.getLogger(AESUtil.class);
     /**
-     * åŠ å¯†ç”¨çš„Key å¯ä»¥ç”¨26ä¸ªå­—æ¯å’Œæ•°å­—ç»„æˆ
-     * æ­¤å¤„ä½¿ç”¨AES-128-CBCåŠ å¯†æ¨¡å¼ï¼Œkeyéœ€è¦ä¸º16ä½ã€‚
+     * ¼ÓÃÜÓÃµÄKey ¿ÉÒÔÓÃ26¸ö×ÖÄ¸ºÍÊı×Ö×é³É
+     * ´Ë´¦Ê¹ÓÃAES-128-CBC¼ÓÃÜÄ£Ê½£¬keyĞèÒªÎª16Î»¡£
      */
-    public  String sKey="1234567812345678" ;
-    public  String ivParameter="1234567812345678";
+    public String sKey = "1234567812345678";
+    public String ivParameter = "1234567812345678";
 
-    // åŠ å¯†
-    public  String encrypt(String sSrc) throws Exception {
+    // ¼ÓÃÜ
+    public String encrypt(String sSrc) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         byte[] raw = getsKey().getBytes();
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
-        IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());//ä½¿ç”¨CBCæ¨¡å¼ï¼Œéœ€è¦ä¸€ä¸ªå‘é‡ivï¼Œå¯å¢åŠ åŠ å¯†ç®—æ³•çš„å¼ºåº¦
+        IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());//Ê¹ÓÃCBCÄ£Ê½£¬ĞèÒªÒ»¸öÏòÁ¿iv£¬¿ÉÔö¼Ó¼ÓÃÜËã·¨µÄÇ¿¶È
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
         byte[] encrypted = cipher.doFinal(sSrc.getBytes("utf-8"));
         Base64.Encoder encoder = Base64.getEncoder();
-        byte[] str = encoder.encode(encrypted);//æ­¤å¤„ä½¿ç”¨BASE64åšè½¬ç ã€‚
+        byte[] str = encoder.encode(encrypted);//´Ë´¦Ê¹ÓÃBASE64×ö×ªÂë¡£
         return new String(str, UTF_8);
     }
 
-    // è§£å¯†
-    public  String decrypt(String sSrc) {
+    // ½âÃÜ
+    public String decrypt(String sSrc) {
         try {
             byte[] raw = getsKey().getBytes("ASCII");
             SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
@@ -46,7 +39,7 @@ public class AESUtil {
             IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
             Base64.Decoder decoder = Base64.getDecoder();
-            byte[] encrypted1 = decoder.decode(sSrc);//å…ˆç”¨base64è§£å¯†
+            byte[] encrypted1 = decoder.decode(sSrc);//ÏÈÓÃbase64½âÃÜ
             byte[] original = cipher.doFinal(encrypted1);
             String originalString = new String(original, "utf-8");
             return originalString;
@@ -55,126 +48,36 @@ public class AESUtil {
         }
     }
 
-    public String getUuidAlone()
-    {
-        String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
-        if (mata_data == null) {
-            return null;
-        }
-        String uuid = null;
-        try
-        {
-            JSONObject mataDataJson = new JSONObject(mata_data);
-            uuid = mataDataJson.getString("uuid");
-        }
-        catch (JSONException e)
-        {
-            e.printStackTrace();
-        }
-        return uuid;
-    }
-    public String curl(String type, String url)
-    {
-        URL urlOb = null;
-        try
-        {
-            urlOb = new URL(url);
-        }
-        catch (MalformedURLException e)
-        {
-            logger.error("curl new URL() exception", e);
-            return null;
-        }
-        try
-        {
-            if (urlOb == null) {
-                return null;
-            }
-            HttpURLConnection conn = (HttpURLConnection)urlOb.openConnection();
-            conn.setRequestMethod(type);
-            if ("GET".equals(type))
-            {
-                conn.setConnectTimeout(3000);
-                conn.setReadTimeout(2000);
-                InputStream inStream = conn.getInputStream();
-                int count = 0;
-                while (count == 0) {
-                    count = inStream.available();
-                }
-                byte[] bytes = new byte[count];
-                inStream.read(bytes, 0, inStream.available());
-                return new String(bytes);
-            }
-            if ("POST".equals(type))
-            {
-                conn.setDoOutput(true);
-                conn.setDoInput(true);
-                conn.setUseCaches(false);
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                conn.connect();
 
-                PrintWriter out = new PrintWriter(conn.getOutputStream());
 
-                out.write("True");
 
-                out.flush();
-                int responseCode = conn.getResponseCode();
-                logger.info("responseCode:." + responseCode + "..............................");
-                logger.info("post...............................");
-                return null;
-            }
-            if ("DELETE".equals(type))
-            {
-                conn.setDoInput(true);
-                conn.setDoOutput(true);
-                conn.connect();
-                int responseCode = conn.getResponseCode();
-                logger.info("responseCode:." + responseCode + "..............................");
-                logger.info("delete...............................");
-                return null;
-            }
-        }
-        catch (IOException e)
-        {
-            logger.error("curl exception", e);
-            return null;
-        }
-        return null;
-    }
-    public void resetPwd(String password)
-    {
+    public void resetPwd(String password) {
         Runtime rt = Runtime.getRuntime();
 
         Process p = null;
-        try
-        {
-            String[] cmds = { "/bin/sh", "-c", "echo root:" + password + "|chpasswd" };
+        try {
+            String[] cmds = {"/bin/sh", "-c", "echo root:" + password + "|chpasswd"};
             p = rt.exec(cmds);
-            if (null != p)
-            {
-                try
-                {
+            if (null != p) {
+                try {
                     p.waitFor();
-                }
-                catch (InterruptedException e)
-                {
+                } catch (InterruptedException e) {
                     logger.error(e);
                 }
                 p.destroy();
                 p = null;
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             logger.error(e);
         }
     }
 
     public AESUtil() {
     }
-    public AESUtil(String secretKey,String ivParameter ) {
-        this.sKey=secretKey;
-        this.ivParameter=ivParameter;
+
+    public AESUtil(String secretKey, String ivParameter) {
+        this.sKey = secretKey;
+        this.ivParameter = ivParameter;
     }
 
     public String getsKey() {
@@ -192,4 +95,5 @@ public class AESUtil {
     public void setIvParameter(String ivParameter) {
         this.ivParameter = ivParameter;
     }
+
 }

@@ -3,6 +3,8 @@ package com.github.resetpwd;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.net.URI;
+import java.util.Date;
 
 /**
  * @program: resetpwd
@@ -13,13 +15,13 @@ import java.io.*;
 public class FileUtil {
     private static Logger logger = Logger.getLogger(AESUtil.class);
 
-    public static  void createFile(String filePath,String fileName,String content ) throws IOException {
+    public static void createFile(String filePath, String fileName, String content) throws IOException {
 
         File dir = new File(filePath);
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        File checkFile = new File(filePath + "/"+fileName);
+        File checkFile = new File(filePath + "/" + fileName);
         FileWriter writer = null;
         try {
 
@@ -37,12 +39,40 @@ public class FileUtil {
             }
         }
     }
+    public static void write( String content)  {
+
+        String filePath=getPath();
+        File dir = new File(filePath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File checkFile = new File(filePath + "/" + "key");
+        FileWriter writer = null;
+        try {
+
+            if (!checkFile.exists()) {
+                checkFile.createNewFile();
+            }
+            writer = new FileWriter(checkFile, false);
+            writer.append(content);
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (null != writer) {
+                try {
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public static String readFileByBytes(String fileName) throws IOException {
         File file = new File(fileName);
         InputStream in = null;
         StringBuffer sb = new StringBuffer();
-
-
         if (file.isFile() && file.exists()) {
             byte[] tempbytes = new byte[1024];
             int byteread = 0;
@@ -57,4 +87,17 @@ public class FileUtil {
         }
         return sb.toString();
     }
+
+    public static String getPath() {
+        String path = null;
+        File directory = new File("");//设定为当前文件夹
+        path = directory.getAbsolutePath();
+
+        return path;
+    }
+    public static void main(String[] args) throws IOException {
+        logger.info(""+getPath().toString());
+        write("ddddd");
+    }
+
 }
