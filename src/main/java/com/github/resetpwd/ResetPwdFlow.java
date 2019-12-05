@@ -1,3 +1,4 @@
+/*
 package com.github.resetpwd;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
@@ -21,12 +22,14 @@ import java.security.spec.InvalidKeySpecException;
 import javax.crypto.Cipher;
 
 
+*/
 /**
  * @program: resetpwd
  * @description:
  * @author: jiangsk@inspur.com
  * @create: 2019-12-04 17:40
- **/
+ **//*
+
 public class ResetPwdFlow {
     private static Logger logger = LogManager.getLogger(ResetPwdFlow.class);
     private static final String RESET_PWD_FLAG_URL = "http://169.254.169.254/openstack/latest/resetpwd_flag";
@@ -422,3 +425,4 @@ public class ResetPwdFlow {
         return null;
     }
 }
+*/

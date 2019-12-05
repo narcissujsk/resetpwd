@@ -20,6 +20,11 @@ public class Main {
             for (int i = 0; i < 999; i++) {
                 logger.info("log"+ new Date().toString());
             }
+            while(true){
+                Thread.sleep(3000);
+
+                logger.info("log"+ new Date().toString());
+            }
         } catch (Exception e) {
             logger.error(e);
         }
