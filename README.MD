@@ -7,6 +7,9 @@
  AES加密算法采用分组密码体制，每个分组数据的长度为128位16个字节，密钥长度可以是128位16个字节、192位或256位，
  一共有四种加密模式，我们通常采用需要初始向量IV的CBC模式，初始向量的长度也是128位16个字节。
 
-chmod +x .scriptresetPwdAgent
-./cloudResetPwdAgent.script install
-./cloudResetPwdAgent.script start
+安装服务
+chmod +x resetPwdAgent
+./resetPwdAgent install
+./resetPwdAgent start
+删除服务
+./resetPwdAgent remove
