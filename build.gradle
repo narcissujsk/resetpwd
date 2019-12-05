@@ -1,13 +1,8 @@
 plugins {
-    id 'org.springframework.boot' version '2.2.1.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
 apply plugin: 'java'
-apply plugin: 'jacoco'
-apply plugin: 'idea'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
+
 group = 'com.github'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -17,17 +12,8 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/junit/junit
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile('net.sf.json-lib:json-lib:2.4:jdk15')
-    // https://mvnrepository.com/artifact/org.json/json
     compile group: 'org.json', name: 'json', version: '20190722'
-
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'junit:junit:4.12'
-// https://mvnrepository.com/artifact/log4j/log4j
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
-
 }
 
 test {

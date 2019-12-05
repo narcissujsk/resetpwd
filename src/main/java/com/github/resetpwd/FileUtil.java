@@ -16,19 +16,16 @@ public class FileUtil {
     public static  void createFile(String filePath,String fileName,String content ) throws IOException {
 
         File dir = new File(filePath);
-        // 一、检查放置文件的文件夹路径是否存在，不存在则创建
         if (!dir.exists()) {
-            dir.mkdirs();// mkdirs创建多级目录
+            dir.mkdirs();
         }
         File checkFile = new File(filePath + "/"+fileName);
         FileWriter writer = null;
         try {
-            // 二、检查目标文件是否存在，不存在则创建
+
             if (!checkFile.exists()) {
-                checkFile.createNewFile();// 创建目标文件
+                checkFile.createNewFile();
             }
-            // 三、向目标文件中写入内容
-            // FileWriter(File file, boolean append)，append为true时为追加模式，false或缺省则为覆盖模式
             writer = new FileWriter(checkFile, false);
             writer.append(content);
             writer.flush();
@@ -46,14 +43,10 @@ public class FileUtil {
         StringBuffer sb = new StringBuffer();
 
 
-        if (file.isFile() && file.exists()) { //判断文件是否存在
-           // System.out.println("以字节为单位读取文件内容，一次读多个字节：");
-            // 一次读多个字节
+        if (file.isFile() && file.exists()) {
             byte[] tempbytes = new byte[1024];
             int byteread = 0;
             in = new FileInputStream(file);
-
-            // 读入多个字节到字节数组中，byteread为一次读入的字节数
             while ((byteread = in.read(tempbytes)) != -1) {
                 //  System.out.write(tempbytes, 0, byteread);
                 String str = new String(tempbytes, 0, byteread);
