@@ -23,7 +23,7 @@ public class Main {
             while(true){
                 Thread.sleep(3000);
                 ResetPasswd.run();
-               logger.info("agent run : "+ new Date().toString());
+              // logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
             logger.error(e);
