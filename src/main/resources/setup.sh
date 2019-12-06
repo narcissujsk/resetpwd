@@ -6,15 +6,14 @@ install()
 echo "begin install ResetPwdAgent"
 echo "===============cp ResetPwdAgent======================"
 
-cp -rf $CUR_DIR/ResetPwdAgent /opt/
+cp -rf $CUR_DIR/resetPwdAgent  /opt/
 
 echo "===============begin install ResetPwdAgent==================="
-cd /opt/ResetPwdAgent/bin
+cd /opt/resetPwdAgent/bin
 chmod +x resetPwdAgent
 ./resetPwdAgent install
 ./resetPwdAgent start
 cd -
-
 
 if [ $? -eq 0 ]; then
         echo "cloudResetPwdAgent install successfully."
