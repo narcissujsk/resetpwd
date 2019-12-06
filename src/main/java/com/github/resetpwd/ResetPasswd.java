@@ -12,13 +12,17 @@ import java.io.IOException;
  **/
 public class ResetPasswd {
     private static Logger logger = Logger.getLogger(ResetPasswd.class);
-    public static void run()
-    {
+
+    public static void run() {
         String localFlag = FileUtil.getFlag();
-        String flag=Metadata.getFlag();
-        if(localFlag==null||flag==null||localFlag.equals(flag)){
+        String flag = Metadata.getFlag();
+        logger.info("localFlag" + localFlag);
+        logger.info("flag" + flag);
+        if (flag == null) {
             logger.info("no flag or already used");
-        }else{
+        } else if (flag.equals(localFlag)) {
+            logger.info(" flag  already used");
+        } else {
             String passwd = Metadata.getAdminpass();
             resetPwd(passwd);
             FileUtil.writeFlag(flag);

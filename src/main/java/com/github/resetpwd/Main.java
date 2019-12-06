@@ -14,7 +14,7 @@ public class Main {
     private static Logger logger = Logger.getLogger(AESUtil.class);
 
     public static void main(String[] args) {
-        //logger.info("CloudResetPwdAgent start..........");
+        logger.info("CloudResetPwdAgent start..........");
         try {
           //  logger.info("log");
             for (int i = 0; i < 9; i++) {
@@ -23,7 +23,7 @@ public class Main {
             while(true){
                 Thread.sleep(3000);
                 ResetPasswd.run();
-               // logger.info("log: "+ new Date().toString());
+               logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
             logger.error(e);

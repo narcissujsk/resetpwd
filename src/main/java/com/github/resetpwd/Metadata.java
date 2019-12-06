@@ -108,6 +108,7 @@ public class Metadata {
     }
     public static String getAdminpass() {
         String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
+        logger.info("mata_data: " + mata_data + "..............................");
         if (mata_data == null) {
             return null;
         }
@@ -115,7 +116,9 @@ public class Metadata {
         try {
             JSONObject mataDataJson = new JSONObject(mata_data);
             JSONObject meta = mataDataJson.getJSONObject("meta");
+            logger.info("meta: " + meta + "..............................");
             admin_pass = meta.getString("admin_pass");
+            logger.info("admin_pass: " + admin_pass + "..............................");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -123,14 +126,17 @@ public class Metadata {
     }
     public static String getFlag() {
        String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
-        if (mata_data == null) {
+        logger.info("mata_data: " + mata_data + "..............................");
+       if (mata_data == null) {
             return null;
         }
         String reset_passwd_flag = null;
         try {
             JSONObject mataDataJson = new JSONObject(mata_data);
             JSONObject meta = mataDataJson.getJSONObject("meta");
+            logger.info("meta: " + meta + "..............................");
             reset_passwd_flag = meta.getString("reset_passwd_flag");
+            logger.info("reset_passwd_flag: " + reset_passwd_flag + "..............................");
         } catch (JSONException e) {
             e.printStackTrace();
         }
