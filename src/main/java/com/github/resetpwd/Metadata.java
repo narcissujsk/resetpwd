@@ -122,8 +122,7 @@ public class Metadata {
         return admin_pass;
     }
     public static String getFlag() {
-        return "dddd";
-      /*  String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
+       String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
         if (mata_data == null) {
             return null;
         }
@@ -135,6 +134,6 @@ public class Metadata {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return reset_passwd_flag;*/
+        return reset_passwd_flag;
     }
 }
