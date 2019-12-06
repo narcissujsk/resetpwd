@@ -39,14 +39,14 @@ public class FileUtil {
             }
         }
     }
-    public static void write( String content)  {
+    public static void writeFlag( String content)  {
 
         String filePath=getPath();
         File dir = new File(filePath);
         if (!dir.exists()) {
             dir.mkdirs();
         }
-        File checkFile = new File(filePath + "/" + "key");
+        File checkFile = new File(filePath + "/" + "flag");
         FileWriter writer = null;
         try {
 
@@ -87,7 +87,38 @@ public class FileUtil {
         }
         return sb.toString();
     }
+    public static String getFlag() {
+        String flag = null;
+        try {
+            flag = null;
+            String filePath=getPath();
+            File dir = new File(filePath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            File checkFile = new File(filePath + "/" + "flag");
+            InputStream in = null;
+            StringBuffer sb = new StringBuffer();
+            if (checkFile.isFile() && checkFile.exists()) {
+                byte[] tempbytes = new byte[1024];
+                int byteread = 0;
+                in = new FileInputStream(checkFile);
+                while ((byteread = in.read(tempbytes)) != -1) {
+                    //  System.out.write(tempbytes, 0, byteread);
+                    String str = new String(tempbytes, 0, byteread);
+                    sb.append(str);
+                }
+                flag = sb.toString();
+            } else {
+                flag = null;
+                //logger.info("找不到指定的文件，请确认文件路径是否正确");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        return flag;
+    }
     public static String getPath() {
         String path = null;
         File directory = new File("");//设定为当前文件夹
@@ -95,9 +126,11 @@ public class FileUtil {
 
         return path;
     }
-    public static void main(String[] args) throws IOException {
+ /*  public static void main(String[] args) throws IOException {
         logger.info(""+getPath().toString());
-        write("ddddd");
-    }
+        writeFlag("dddd");
+        String flag = getFlag();
+        logger.info("flag: "+flag);
+    }*/
 
 }

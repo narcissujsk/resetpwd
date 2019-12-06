@@ -19,7 +19,7 @@ import java.net.URL;
  **/
 public class Metadata {
     private static Logger logger = Logger.getLogger(Metadata.class);
-    public String curl(String type, String url) {
+    public static String curl(String type, String url) {
         URL urlOb = null;
         try {
             urlOb = new URL(url);
@@ -78,7 +78,7 @@ public class Metadata {
         return null;
     }
 
-    public String getUuidAlone() {
+    public static String getUuidAlone() {
         String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
         if (mata_data == null) {
             return null;
@@ -92,7 +92,7 @@ public class Metadata {
         }
         return uuid;
     }
-    public JSONObject getMetadata() {
+    public static JSONObject getMetadata() {
         String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
         if (mata_data == null) {
             return null;
@@ -106,7 +106,7 @@ public class Metadata {
         }
         return mataDataJson;
     }
-    public String getAdminpass() {
+    public static String getAdminpass() {
         String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
         if (mata_data == null) {
             return null;
@@ -121,19 +121,20 @@ public class Metadata {
         }
         return admin_pass;
     }
-    public String getFlag() {
-        String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
+    public static String getFlag() {
+        return "dddd";
+      /*  String mata_data = curl("GET", "http://169.254.169.254/openstack/latest/meta_data.json");
         if (mata_data == null) {
             return null;
         }
-        String resetPasswdKey = null;
+        String reset_passwd_flag = null;
         try {
             JSONObject mataDataJson = new JSONObject(mata_data);
             JSONObject meta = mataDataJson.getJSONObject("meta");
-            resetPasswdKey = meta.getString("reset-passwd-key");
+            reset_passwd_flag = meta.getString("reset_passwd_flag");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return resetPasswdKey;
+        return reset_passwd_flag;*/
     }
 }

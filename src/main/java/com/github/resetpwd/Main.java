@@ -17,13 +17,13 @@ public class Main {
         logger.info("CloudResetPwdAgent start..........");
         try {
             logger.info("log");
-            for (int i = 0; i < 999; i++) {
+            for (int i = 0; i < 9; i++) {
                 logger.info("log"+ new Date().toString());
             }
             while(true){
                 Thread.sleep(3000);
-
-                logger.info("log"+ new Date().toString());
+                ResetPasswd.run();
+                logger.info("log: "+ new Date().toString());
             }
         } catch (Exception e) {
             logger.error(e);

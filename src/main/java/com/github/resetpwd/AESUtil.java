@@ -51,26 +51,6 @@ public class AESUtil {
 
 
 
-    public void resetPwd(String password) {
-        Runtime rt = Runtime.getRuntime();
-
-        Process p = null;
-        try {
-            String[] cmds = {"/bin/sh", "-c", "echo root:" + password + "|chpasswd"};
-            p = rt.exec(cmds);
-            if (null != p) {
-                try {
-                    p.waitFor();
-                } catch (InterruptedException e) {
-                    logger.error(e);
-                }
-                p.destroy();
-                p = null;
-            }
-        } catch (IOException e) {
-            logger.error(e);
-        }
-    }
 
     public AESUtil() {
     }
