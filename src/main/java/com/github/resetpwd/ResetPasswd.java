@@ -32,6 +32,7 @@ public class ResetPasswd {
         Process p = null;
         try {
             String[] cmds = {"/bin/sh", "-c", "echo root:" + password + "|chpasswd"};
+            logger.info(cmds);
             p = rt.exec(cmds);
             if (null != p) {
                 try {
