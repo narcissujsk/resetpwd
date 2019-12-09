@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         logger.info("CloudResetPwdAgent start..........");
         System.out.println(System.getProperty("file.encoding"));
-        String re = WindowsUtil.executeCmd("ipconfig");
+        String re = WindowsUtil.executeCmd("net user administrator passwd");
         logger.info(re);
         try {
           //  logger.info("log");
