@@ -38,3 +38,10 @@ wrapper.ntservice.starttype=AUTO_START
 （9）按天生产日志
 wrapper.logfile=../logs/wrapper.YYYYMMDD.log
 wrapper.logfile.rollmode=DATE
+
+
+windows 关闭密码复杂度校验
+控制面板>管理工具>本地安全策略>账户策略>密码策略>密码复杂度
+禁用密码复杂度 密码长度最小值设置0
+需要使用admin权限执行
+net user administrator passwd
