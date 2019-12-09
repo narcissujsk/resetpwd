@@ -45,3 +45,5 @@ windows 关闭密码复杂度校验
 禁用密码复杂度 密码长度最小值设置0
 需要使用admin权限执行
 net user administrator passwd
+
+runas /profile /env /user:admin\administrator "mmc %windir%\system32\dsa.msc"

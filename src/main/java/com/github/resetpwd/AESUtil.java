@@ -11,26 +11,26 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class AESUtil {
     private static Logger logger = Logger.getLogger(AESUtil.class);
     /**
-     * ¼ÓÃÜÓÃµÄKey ¿ÉÒÔÓÃ26¸ö×ÖÄ¸ºÍÊı×Ö×é³É
-     * ´Ë´¦Ê¹ÓÃAES-128-CBC¼ÓÃÜÄ£Ê½£¬keyĞèÒªÎª16Î»¡£
+     * åŠ å¯†ç”¨çš„Key å¯ä»¥ç”¨26ä¸ªå­—æ¯å’Œæ•°å­—ç»„æˆ
+     * æ­¤å¤„ä½¿ç”¨AES-128-CBCåŠ å¯†æ¨¡å¼ï¼Œkeyéœ€è¦ä¸º16ä½ã€‚
      */
     public String sKey = "1234567812345678";
     public String ivParameter = "1234567812345678";
 
-    // ¼ÓÃÜ
+    // åŠ å¯†
     public String encrypt(String sSrc) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         byte[] raw = getsKey().getBytes();
         SecretKeySpec skeySpec = new SecretKeySpec(raw, "AES");
-        IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());//Ê¹ÓÃCBCÄ£Ê½£¬ĞèÒªÒ»¸öÏòÁ¿iv£¬¿ÉÔö¼Ó¼ÓÃÜËã·¨µÄÇ¿¶È
+        IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());//ä½¿ç”¨CBCæ¨¡å¼ï¼Œéœ€è¦ä¸€ä¸ªå‘é‡ivï¼Œå¯å¢åŠ åŠ å¯†ç®—æ³•çš„å¼ºåº¦
         cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv);
         byte[] encrypted = cipher.doFinal(sSrc.getBytes("utf-8"));
         Base64.Encoder encoder = Base64.getEncoder();
-        byte[] str = encoder.encode(encrypted);//´Ë´¦Ê¹ÓÃBASE64×ö×ªÂë¡£
+        byte[] str = encoder.encode(encrypted);//æ­¤å¤„ä½¿ç”¨BASE64åšè½¬ç ã€‚
         return new String(str, UTF_8);
     }
 
-    // ½âÃÜ
+    // è§£å¯†
     public String decrypt(String sSrc) {
         try {
             byte[] raw = getsKey().getBytes("ASCII");
@@ -39,7 +39,7 @@ public class AESUtil {
             IvParameterSpec iv = new IvParameterSpec(getIvParameter().getBytes());
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv);
             Base64.Decoder decoder = Base64.getDecoder();
-            byte[] encrypted1 = decoder.decode(sSrc);//ÏÈÓÃbase64½âÃÜ
+            byte[] encrypted1 = decoder.decode(sSrc);//å…ˆç”¨base64è§£å¯†
             byte[] original = cipher.doFinal(encrypted1);
             String originalString = new String(original, "utf-8");
             return originalString;

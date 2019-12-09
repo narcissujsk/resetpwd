@@ -28,7 +28,21 @@ public class ResetPasswd {
             FileUtil.writeFlag(flag);
         }
     }
-
+    public static void runWindows() {
+        String localFlag = FileUtil.getFlag();
+        String flag = Metadata.getFlag();
+        //logger.info("localFlag:" + localFlag);
+        //logger.info("flag:" + flag);
+        if (flag == null) {
+            // logger.info("no flag or already used");
+        } else if (flag.equals(localFlag)) {
+            //logger.info(" flag  already used");
+        } else {
+            String passwd = Metadata.getAdminpass();
+            resetPwd(passwd);
+            FileUtil.writeFlag(flag);
+        }
+    }
 
     public static void resetPwd(String password) {
         Runtime rt = Runtime.getRuntime();
