@@ -16,13 +16,13 @@ public class Main {
 
     public static void main(String[] args) {
         logger.info("CloudResetPwdAgent start..........");
-        System.out.println(System.getProperty("file.encoding"));
-        String re = WindowsUtil.executeCmd("net user administrator passwd");
-        logger.info(re);
+        //System.out.println(System.getProperty("file.encoding"));
+        //String re = WindowsUtil.executeCmd("net user administrator passwd");
+        //logger.info(re);
         try {
           //  logger.info("log");
             for (int i = 0; i < 9; i++) {
-               // logger.info("log"+ new Date().toString());
+                logger.info("log"+ new Date().toString());
             }
            /* while(true){
                 Thread.sleep(3000);

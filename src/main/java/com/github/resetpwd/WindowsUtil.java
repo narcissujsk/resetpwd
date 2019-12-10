@@ -28,12 +28,12 @@ public class WindowsUtil {
 
     public static String executeCmd(String cmd) {
         String re = null;
-        Runtime rt = Runtime.getRuntime(); // 运行时系统获取
-        Map<String, String> lineMap = new HashMap<String, String>();//存放返回值
+        Runtime rt = Runtime.getRuntime(); //
+        Map<String, String> lineMap = new HashMap<String, String>();//
         try {
-            Process proc = rt.exec(cmd);// 执行命令
-            InputStream stderr = proc.getInputStream();//执行结果 得到进程的标准输出信息流
-            InputStreamReader isr = new InputStreamReader(stderr);//将字节流转化成字符流
+            Process proc = rt.exec(cmd);//
+            InputStream stderr = proc.getInputStream();//
+            InputStreamReader isr = new InputStreamReader(stderr);//
            Process process = Runtime.getRuntime().exec(cmd);
            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = null;
