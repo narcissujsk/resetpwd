@@ -2,6 +2,7 @@ package com.github.resetpwd;
 
 import org.apache.log4j.Logger;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Map;
 
@@ -14,20 +15,22 @@ import java.util.Map;
 public class Main {
     private static Logger logger = Logger.getLogger(AESUtil.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         logger.info("CloudResetPwdAgent start..........");
-        //System.out.println(System.getProperty("file.encoding"));
+        System.out.println(System.getProperty("file.encoding"));
         //String re = WindowsUtil.executeCmd("net user administrator passwd");
+        //logger.info(re);
+        //String re = WindowsUtil.executeCmd("ipconfig");
         //logger.info(re);
         try {
           //  logger.info("log");
-            for (int i = 0; i < 9; i++) {
+        /*    for (int i = 0; i < 9; i++) {
                 logger.info("log"+ new Date().toString());
-            }
-            while(true){
+            }*/
+           while(true){
                 Thread.sleep(3000);
-
-                logger.info("CloudResetPwdAgent start..........");
+               String re3 = WindowsUtil.executeCmd("net user administrator passwd123");
+                logger.info(re3);
                // ResetPasswd.run();
               // logger.info("agent run : "+ new Date().toString());
             }

@@ -2,10 +2,7 @@ package com.github.resetpwd;
 
 import org.apache.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,7 +23,7 @@ public class WindowsUtil {
 
     }
 
-    public static String executeCmd(String cmd) {
+    public static String executeCmd(String cmd) throws UnsupportedEncodingException {
         String re = null;
         Runtime rt = Runtime.getRuntime(); //
         Map<String, String> lineMap = new HashMap<String, String>();//
@@ -50,6 +47,8 @@ public class WindowsUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+       String _str = new String(re.getBytes("utf-8"),"GBK" );
+        logger.info(_str);
 
         return re;
     }
