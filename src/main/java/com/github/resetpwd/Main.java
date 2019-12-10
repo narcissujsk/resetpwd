@@ -24,13 +24,13 @@ public class Main {
             for (int i = 0; i < 9; i++) {
                 logger.info("log"+ new Date().toString());
             }
-           /* while(true){
+            while(true){
                 Thread.sleep(3000);
 
                 logger.info("CloudResetPwdAgent start..........");
                // ResetPasswd.run();
               // logger.info("agent run : "+ new Date().toString());
-            }*/
+            }
         } catch (Exception e) {
             logger.error(e);
         }
