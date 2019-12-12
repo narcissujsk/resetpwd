@@ -73,8 +73,10 @@ net stop ECService
 
 删除服务：sc delete DYIMService(服务名)
 
-JavaService.exe -install test "%JAVA_HOME%/jre/bin/server/jvm.dll" -Xmx128m -Djava.class.path="%JAVA_HOME%/lib/tools.jar;d:/resetpwd.runnable.jar" -start com.github.resetpwd.Main  -out "d:/out.log" -err "d:/err.log" -current "d:/" -auto
+JavaService.exe -install test "%JAVA_HOME%/jre/bin/server/jvm.dll" -Xmx128m -Djava.class.path="%JAVA_HOME%/lib/tools.jar;d:/resetpwd.main.jar" -start com.github.resetpwd.Main  -out "d:/out.log" -err "d:/err.log" -current "d:/" -auto
 
 net start test
 
 JavaService -uninstall test
+
+sc delete test

@@ -32,12 +32,12 @@ public class WindowsUtil {
             InputStream stderr = proc.getInputStream();//
             InputStreamReader isr = new InputStreamReader(stderr);//
            Process process = Runtime.getRuntime().exec(cmd);
-           BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+           BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
             String line = null;
-            StringBuilder sb=new StringBuilder();
+            StringBuilder sb=new StringBuilder("");
             while ((line = br.readLine()) != null) {
                 if (!(line==null||line.isEmpty())) {
-                    sb.append(line);
+                    sb.append("\r\n"+line);
                 }
             }
             re=sb.toString();

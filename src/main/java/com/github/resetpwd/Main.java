@@ -20,19 +20,19 @@ public class Main {
         System.out.println(System.getProperty("file.encoding"));
         //String re = WindowsUtil.executeCmd("net user administrator passwd");
         //logger.info(re);
-        //String re = WindowsUtil.executeCmd("ipconfig");
-        //logger.info(re);
+        String re = WindowsUtil.executeCmd("ipconfig");
+        logger.info(re);
         try {
-          //  logger.info("log");
+            //  logger.info("log");
         /*    for (int i = 0; i < 9; i++) {
                 logger.info("log"+ new Date().toString());
             }*/
-           while(true){
+            while (true) {
                 Thread.sleep(3000);
-               String re3 = WindowsUtil.executeCmd("net user administrator passwd123");
-                logger.info(re3);
-               // ResetPasswd.run();
-              // logger.info("agent run : "+ new Date().toString());
+                // String re3 = WindowsUtil.executeCmd("net user administrator passwd123");
+                logger.info("agent run : " + new Date().toString());
+                // ResetPasswd.run();
+                // logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
             logger.error(e);
