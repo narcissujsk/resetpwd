@@ -50,7 +50,7 @@ public class WindowsUtil {
        String _str = new String(re.getBytes("utf-8"),"GBK" );
         logger.info(_str);
 
-        return re;
+        return _str;
     }
     public static boolean runCMD(String cmd) throws IOException, InterruptedException {
         final String METHOD_NAME = "runCMD";
