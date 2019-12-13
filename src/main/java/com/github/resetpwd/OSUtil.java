@@ -13,4 +13,8 @@ public class OSUtil {
         String osname = System.getProperty("os.name").toLowerCase();
         return osname;
     }
+    public static  boolean isWindows(){
+        String osname = System.getProperty("os.name").toLowerCase();
+        return osname.contains("windows");
+    }
 }

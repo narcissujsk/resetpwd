@@ -18,21 +18,15 @@ public class Main {
     public static void main(String[] args) throws UnsupportedEncodingException {
         logger.info("CloudResetPwdAgent start..........");
         System.out.println(System.getProperty("file.encoding"));
-        //String re = WindowsUtil.executeCmd("net user administrator passwd");
-        //logger.info(re);
-        String re = WindowsUtil.executeCmd("ipconfig");
-        logger.info(re);
+        logger.info(OSUtil.isWindows());
         try {
-            //  logger.info("log");
-        /*    for (int i = 0; i < 9; i++) {
-                logger.info("log"+ new Date().toString());
-            }*/
+
             while (true) {
                 Thread.sleep(3000);
                 // String re3 = WindowsUtil.executeCmd("net user administrator passwd123");
                 logger.info("agent run : " + new Date().toString());
-                // ResetPasswd.run();
-                // logger.info("agent run : "+ new Date().toString());
+                ResetPasswd.run();
+                logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
             logger.error(e);

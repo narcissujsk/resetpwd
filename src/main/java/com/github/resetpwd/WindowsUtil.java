@@ -23,8 +23,9 @@ public class WindowsUtil {
 
     }
 
-    public static String executeCmd(String cmd) throws UnsupportedEncodingException {
+    public static String executeCmd(String cmd)  {
         String re = null;
+        logger.info(cmd);
         Runtime rt = Runtime.getRuntime(); //
         Map<String, String> lineMap = new HashMap<String, String>();//
         try {
@@ -47,7 +48,12 @@ public class WindowsUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-       String _str = new String(re.getBytes("utf-8"),"GBK" );
+        String _str = null;
+        try {
+            _str = new String(re.getBytes("utf-8"),"GBK" );
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         logger.info(_str);
 
         return _str;
