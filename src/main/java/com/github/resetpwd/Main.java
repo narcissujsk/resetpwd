@@ -25,7 +25,7 @@ public class Main {
                 Thread.sleep(3000);
                 // String re3 = WindowsUtil.executeCmd("net user administrator passwd123");
                 logger.info("agent run : " + new Date().toString());
-                ResetPasswd.run();
+               // ResetPasswd.run();
                 logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
