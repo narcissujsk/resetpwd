@@ -13,7 +13,7 @@ import java.util.Date;
  * @create: 2019-12-05 09:27
  **/
 public class FileUtil {
-    private static Logger logger = Logger.getLogger(AESUtil.class);
+    private static Logger logger1 = Logger.getLogger(AESUtil.class);
 
     public static void createFile(String filePath, String fileName, String content) throws IOException {
 
@@ -83,7 +83,7 @@ public class FileUtil {
                 sb.append(str);
             }
         } else {
-            logger.info("找不到指定的文件，请确认文件路径是否正确");
+            //logger.info("找不到指定的文件，请确认文件路径是否正确");
         }
         return sb.toString();
     }
@@ -114,7 +114,7 @@ public class FileUtil {
                 //logger.info("找不到指定的文件，请确认文件路径是否正确");
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         return flag;

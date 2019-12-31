@@ -29,7 +29,7 @@ public class Main {
                 //logger.info("agent run : "+ new Date().toString());
             }
         } catch (Exception e) {
-            logger.error(e);
+            //logger.error(e);
         }
         //logger.info("CloudResetPwdAgent finish..........");
     }

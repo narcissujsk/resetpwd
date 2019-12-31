@@ -18,13 +18,13 @@ import java.net.URL;
  * @create: 2019-12-05 19:27
  **/
 public class Metadata {
-    private static Logger logger = Logger.getLogger(Metadata.class);
+    private static Logger logger1 = Logger.getLogger(Metadata.class);
     public static String curl(String type, String url) {
         URL urlOb = null;
         try {
             urlOb = new URL(url);
         } catch (MalformedURLException e) {
-            logger.error("curl new URL() exception", e);
+            //logger.error("curl new URL() exception", e);
             return null;
         }
         try {
@@ -58,8 +58,8 @@ public class Metadata {
 
                 out.flush();
                 int responseCode = conn.getResponseCode();
-                logger.info("responseCode:." + responseCode + "..............................");
-                logger.info("post...............................");
+                //logger.info("responseCode:." + responseCode + "..............................");
+                //logger.info("post...............................");
                 return null;
             }
             if ("DELETE".equals(type)) {
@@ -67,12 +67,12 @@ public class Metadata {
                 conn.setDoOutput(true);
                 conn.connect();
                 int responseCode = conn.getResponseCode();
-                logger.info("responseCode:." + responseCode + "..............................");
-                logger.info("delete...............................");
+               // logger.info("responseCode:." + responseCode + "..............................");
+               // logger.info("delete...............................");
                 return null;
             }
         } catch (IOException e) {
-            logger.error("curl exception", e);
+            //logger.error("curl exception", e);
             return null;
         }
         return null;
