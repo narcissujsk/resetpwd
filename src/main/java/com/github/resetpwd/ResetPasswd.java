@@ -17,12 +17,12 @@ public class ResetPasswd {
     public static void run() {
         String localFlag = FileUtil.getFlag();
         String flag = Metadata.getFlag();
-        logger.info("localFlag:" + localFlag);
-        logger.info("flag:" + flag);
+        //logger.info("localFlag:" + localFlag);
+        //logger.info("flag:" + flag);
         if (flag == null) {
-           logger.info("no flag ");
+          // logger.info("no flag ");
         } else if (flag.equals(localFlag)) {
-           logger.info(" flag  already used");
+         //  logger.info(" flag  already used");
         } else {
             String passwd = Metadata.getAdminpass();
             if(OSUtil.isWindows()){

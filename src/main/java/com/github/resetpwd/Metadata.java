@@ -102,7 +102,7 @@ public class Metadata {
              mataDataJson = new JSONObject(mata_data);
 
         } catch (JSONException e) {
-            e.printStackTrace();
+
         }
         return mataDataJson;
     }
@@ -116,11 +116,16 @@ public class Metadata {
         try {
             JSONObject mataDataJson = new JSONObject(mata_data);
             JSONObject meta = mataDataJson.getJSONObject("meta");
+            if(meta.has("admin_pass")){
+                admin_pass = meta.getString("admin_pass");
+            }else{
+                admin_pass = null;
+            }
            // logger.info("meta: " + meta);
-            admin_pass = meta.getString("admin_pass");
+
             //logger.info("admin_pass: " + admin_pass);
         } catch (JSONException e) {
-            e.printStackTrace();
+
         }
         return admin_pass;
     }
@@ -134,11 +139,15 @@ public class Metadata {
         try {
             JSONObject mataDataJson = new JSONObject(mata_data);
             JSONObject meta = mataDataJson.getJSONObject("meta");
+            if(meta.has("reset_passwd_flag")){
+                reset_passwd_flag = meta.getString("reset_passwd_flag");
+            }else{
+                reset_passwd_flag = null;
+            }
            // logger.info("meta: " + meta + "..............................");
-            reset_passwd_flag = meta.getString("reset_passwd_flag");
            // logger.info("reset_passwd_flag: " + reset_passwd_flag );
         } catch (JSONException e) {
-            e.printStackTrace();
+
         }
         return reset_passwd_flag;
     }
